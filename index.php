@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="stylePHP.css" type="text/css">
 </head>
 <body>
     <h1>Cours php</h1>
@@ -30,9 +31,9 @@
                 </mark>
             
                 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     echo "Cette ligne est écrite directement en php, soit :";
-?&gt;
+<span class="balisePHP">?&gt;</span>
                 </pre>
             </dd>
     </dl>
@@ -90,12 +91,12 @@
     ?>
     voici le code php utilisé :
     <pre>
-        &lt;?php
-            $nombreOne = 72;
-            $nombreTwo = 386;
-            $resultat = $nombreOne + $nombreTwo;
-            echo $resultat;
-        ?&gt;
+        <span class="balisePHP">&lt;?php</span>
+            <span class="variable">$nombreOne</span> = 72;
+            <span class="variable">$nombreTwo</span> = 386;
+            <span class="variable">$resultat</span> = <span class="variable">$nombreOne</span> + <span class="variable">$nombreTwo</span>;
+            echo <span class="variable">$resultat</span>;
+        <span class="balisePHP">?&gt;</span>
     </pre>
 
 <h2>Les scopes</h2>
@@ -103,10 +104,10 @@
 <p>Une variable global peut être lu sur toute la page mais pas dans une fonction.</p>
 <p>Exemple : (Variable global)</p>
 <pre>
-&lt;?php 
-    $variableGlobal1 = "&lt;mark&gt;Je suis une variable global&lt;/mark&gt;";
-    echo $variableGlobal1;
-?&gt;
+<span class="balisePHP">&lt;?php</span> 
+    <span class="variable">$variableGlobal1</span> = "&lt;mark&gt;Je suis une variable global&lt;/mark&gt;";
+    echo <span class="variable">$variableGlobal1</span>;
+<span class="balisePHP">?&gt;</span>
 </pre>
 soit : 
 <?php 
@@ -115,13 +116,13 @@ soit :
 ?>
 <p>Exemple 2 : Utilisation d'une variable global dans une fonction causera irrémédiablement une erreur avec cette syntaxe.</p>
 <pre>
-&lt;?php 
-    $variableGlobal2 = "&lt;mark&gt;Je suis une variable global dans un scope local&lt;/mark&gt;";
+<span class="balisePHP">&lt;?php</span>
+    <span class="variable">$variableGlobal2</span> = "&lt;mark&gt;Je suis une variable global dans un scope local&lt;/mark&gt;";
     function testGlobal(){
-        echo $variableGlobal2;
+        echo <span class="variable">$variableGlobal2</span>;
     }
     testGlobal();
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 soit : 
 <?php 
@@ -135,14 +136,14 @@ soit :
 <p>Une variable local est accessible uniquement dans une fonction.</p>
 <p>Exemple 3 : Faire tout de même fonctionner notre 2ème variable dans un scope local.</p>
 <pre>
-&lt;?php 
-    $variableGlobal3 = "&lt;mark&gt;Je suis une variable global dans un scope local&lt;/mark&gt;";
+<span class="balisePHP">&lt;?php</span> 
+    <span class="variable">$variableGlobal3</span> = "&lt;mark&gt;Je suis une variable global dans un scope local&lt;/mark&gt;";
     function testGlobalInLocal(){
-        global $variableGlobal3;
-        echo $variableGlobal3;
+        global <span class="variable">$variableGlobal3</span>;
+        echo <span class="variable">$variableGlobal3</span>;
     }
     testGlobalInLocal();
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 soit :
 <?php 
@@ -155,13 +156,13 @@ soit :
 ?>
 <p>Utilisation d'une super global ($GLOBALS[])</p>
 <pre>
-&lt;?php 
-    $variableGlobal4 = "&lt;mark&gt;Je suis une SUPER GLOBAL dans un scope local&lt;/mark&gt;";
+<span class="balisePHP">&lt;?php</span> 
+    <span class="variable">$variableGlobal4</span> = "&lt;mark&gt;Je suis une SUPER GLOBAL dans un scope local&lt;/mark&gt;";
     function testSuperGlobal(){
-        echo $GLOBALS['variableGlobal4'];
+        echo <span class="variable">$GLOBALS</span>['variableGlobal4'];
     }
     testSuperGlobal();
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 soit : 
 <?php 
@@ -175,11 +176,11 @@ soit :
 <p>le scope static permet de garder en mémoire un résultat et de repartir de ce même résultat pour un afficher un autre.</p>
 <p>Exemple : dans un scope local on définit une variable à 10 et à chaque fois on lui ajoute 1. En ajoutant static on gardera en mémoire le résultat final soit 11 et en réutilisant cette même fonction, on obtiendra comme second résultat : 12. puis 13,14 15etc... </p>
 <pre>
-&lt;?php 
+<span class="balisePHP">&lt;?php</span> 
     function essaiVariableStatic() {
-        $nombre1 = 10;
-        $nombre1++;
-        echo $nombre1;
+        <span class="variable">$nombre1</span> = 10;
+        <span class="variable">$nombre1</span>++;
+        echo <span class="variable">$nombre1</span>;
     }
 
     essaiVariableStatic();
@@ -190,7 +191,7 @@ soit :
     echo "&lt;br&gt;";
     essaiVariableStatic();
 
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 soit : 
 <?php 
@@ -238,10 +239,10 @@ soit :
             <li>A savoir qu'on ne peux pas afficher un array en appelant uniquement la variable.</li>
             <li> Avec un var_dump() ça fonctionne :
             <pre>
-&lt;?php
-    $jourDeLaSemaine = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","dimanche");
-    var_dump($jourDeLaSemaine);
-?&gt;
+<span class="balisePHP">&lt;?php</span>
+    <span class="variable">$jourDeLaSemaine</span> = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","dimanche");
+    var_dump(<span class="variable">$jourDeLaSemaine</span>);
+<span class="balisePHP">?&gt;</span>
             </pre>
             <?php
                 $jourDeLaSemaine = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","dimanche");
@@ -260,8 +261,8 @@ class Objet {
     }
 }
 
-$objetOne = new Objet();
-var_dump($objetOne);
+<span class="variable">$objetOne</span> = new Objet();
+var_dump(<span class="variable">$objetOne</span>);
                 </pre>
                 ce qui affichera :<mark>
                 <?php
@@ -283,10 +284,10 @@ var_dump($objetOne);
             </li>
             <li>soit :
             <pre>
-&lt;?php
-    $null = null;
-    var_dump($null);
-?&gt;
+<span class="balisePHP">&lt;?php</span>
+    <span class="variable">$null</span> = null;
+    var_dump(<span class="variable">$null</span>);
+<span class="balisePHP">?&gt;</span>
             </pre>
             <mark>
             <?php
@@ -303,10 +304,10 @@ var_dump($objetOne);
 <p>En javascript nous utilisions le console.log() pour afficher dans la console un résultat, ici en php le var_dump affichera directement sur la page ce qu'on a spécifier entre parenthèse.</p>
 <p>Exemple de 2 var_dump(). Le premier concernera une string et le second un nombr entier.</p>
 <pre>
-    &lt;?php 
-        $myString = "J'adore le code informatique";
-        var_dump($myString);
-    ?&gt;
+    <span class="balisePHP">&lt;?php</span> 
+        <span class="variable">$myString</span> = "J'adore le code informatique";
+        var_dump(<span class="variable">$myString</span>);
+    <span class="balisePHP">?&gt;</span>
 </pre>
 soit : 
 <mark><?php 
@@ -314,10 +315,10 @@ soit :
     var_dump($myString);
 ?> </mark>(28 correspond au nombre de caractères).
 <pre>
-    &lt;?php 
-        $myInteger = 3;
-        var_dump($myInteger);
-    ?&gt;
+    <span class="balisePHP">&lt;?php</span> 
+        <span class="variable">$myInteger</span> = 3;
+        var_dump(<span class="variable">$myInteger</span>);
+    <span class="balisePHP">?&gt;</span>
 </pre>
 soit : 
 <mark><?php 
@@ -328,10 +329,10 @@ soit :
 <h2>Quelques fonctions pour les chaines de caractères...</h2>
 <h3>Longeur d'une string.</h3>
 <pre>
-    &lt;?php
-        $functionString1 = "Utilisation de la fonction <strong>strlen()</strong> qui permet d'obtenir la longueur d'une chaine de caractère";
-        echo 'ma variable : $functionString1 dispose de ' . strlen($functionString1) . ' caractères.';
-    ?&gt;
+    <span class="balisePHP">&lt;?php</span>
+        <span class="variable">$functionString1</span> = "Utilisation de la fonction <strong>strlen()</strong> qui permet d'obtenir la longueur d'une chaine de caractère";
+        echo 'ma variable : $functionString1 dispose de ' . strlen(<span class="variable">$functionString1</span>) . ' caractères.';
+    <span class="balisePHP">?&gt;</span>
 </pre>
 affichera : 
 <?php
@@ -340,10 +341,10 @@ affichera :
     ?>
 <h3>Comptez le nombre de mots</h3>
 <pre>
-    &lt;?php
-        $functionString2 = "Utilisation de la fonction <strong>str_word_count()</strong> qui permet de compter le nombre de mots dans un texte.";
-        echo 'ma variable $functionString2 contient ' . str_word_count($functionString2) . ' mots.';
-    ?&gt;
+    <span class="balisePHP">&lt;?php</span>
+        <span class="variable">$functionString2</span> = "Utilisation de la fonction <strong>str_word_count()</strong> qui permet de compter le nombre de mots dans un texte.";
+        echo 'ma variable $functionString2 contient ' . str_word_count(<span class="variable">$functionString2</span>) . ' mots.';
+    <span class="balisePHP">?&gt;</span>
 </pre>
     <?php
         $functionString2 = "Utilisation de la fonction <strong>str_word_count()</strong> qui permet de compter le nombre de mots dans un texte.";
@@ -351,12 +352,12 @@ affichera :
     ?>
 <h3>Mettre à l'envers une phrase</h3>
 <pre>
-    &lt;?php
-        $functionString3 = "Utilisation de la fonction <strong>strrev()</strong> qui permet d'inscrire une phrase completement a l'envers. Allez et si on parlait le verlant";
+    <span class="balisePHP">&lt;?php</span>
+        <span class="variable">$functionString3</span> = "Utilisation de la fonction <strong>strrev()</strong> qui permet d'inscrire une phrase completement a l'envers. Allez et si on parlait le verlant";
 
         echo '- Ma variable $functionString3 affiche en verlant cette phrase : &lt;br /&gt;' . strrev($functionString3) . '&lt;br /&gt;';
-        echo "- La phrase d'origine pour la même fonction : &lt;br /&gt;" . $functionString3;
-    ?&gt;
+        echo "- La phrase d'origine pour la même fonction : &lt;br /&gt;" . <span class="variable">$functionString3</span>;
+    <span class="balisePHP">?&gt;</span>
 </pre>
     <?php
         $functionString3 = "Utilisation de la fonction <strong>strrev()</strong> qui permet d'inscrire une phrase completement a l'envers. Allez et si on parlait le verlant";
@@ -367,11 +368,11 @@ affichera :
 <h3>Trouver la position d'un mot précis</h3>
 <p>A savoir que la function qui va suivre est comprise comme un boolean. Si le résultat est vrai alors il affichera le résultat. En revanche, si le résultat n'existe pas, à l'écran rien ne sera affiché hormis si on utilise un var_dump() de la fonction qui affichera belle et bien le false à l'écran.</p>
 <pre>
-    &lt;?php
-        $functionString4 = "Utilisation de la fonction <strong>strpos(arg1, arg2)</strong> qui prends comme premier argument la variable à rechercher. LE second argument quand à lui correspond au mot clé à chercher.";
+    <span class="balisePHP">&lt;?php</span>
+        <span class="variable">$functionString4</span> = "Utilisation de la fonction <strong>strpos(arg1, arg2)</strong> qui prends comme premier argument la variable à rechercher. LE second argument quand à lui correspond au mot clé à chercher.";
 
         echo 'Dans ma variable $functionString4, je recherche le mot "variable". Le chiffre indiqué après correspond à la position du premier caractère du mot clé soit le "v". Donc le résultat est : &lt;br /&gt;' . strpos($functionString4, "variable");
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $functionString4 = "Utilisation de la fonction <strong>strpos(arg1, arg2)</strong> qui prends comme premier argument la variable à rechercher. LE second argument quand à lui correspond au mot clé à chercher.";
@@ -385,13 +386,13 @@ arg2 = Mot à remplacer.<br />
 arg3 = Ou ? Dans quelle chaine de caractère ?
 </p>
 <pre>
-    &lt;?php
-        $functionString2a = 'ancien-mot';
-        $functionString2b = 'nouveau-mot';
-        $functionString2c = 'Dans cette phrase on a remplacer ma variable $functionString2a par $functionString2b qui contient : <strong>ancien-mot</strong> qui était elle-même dans la $functionString2c';
+    <span class="balisePHP">&lt;?php</span>
+        <span class="variable">$functionString2a</span> = 'ancien-mot';
+        <span class="variable">$functionString2b</span> = 'nouveau-mot';
+        <span class="variable">$functionString2c</span> = 'Dans cette phrase on a remplacer ma variable $functionString2a par $functionString2b qui contient : ancien-mot qui était elle-même dans la $functionString2c';
 
-        echo str_replace($functionString2a, $functionString2b, $functionString2c);
-    ?&gt;
+        echo str_replace(<span class="variable">$functionString2a</span>, <span class="variable">$functionString2b</span>, <span class="variable">$functionString2c</span>);
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $functionString2a = 'ancien-mot';
@@ -403,10 +404,10 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h2>Les constantes</h2>
 <p>Une constante, c'est la définition d'un terme bien précis qui ne changera jamais. A savoir aussi qu'une constante est accessible de partout que ce soit dans un scope global, locale peu importe.</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         define("MY_URL", "http://alain-guillon.fr");
         echo "l'adresse de mon site web se trouve à cette adresse " . MY_URL;
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     define("MY_URL", "http://alain-guillon.fr");
@@ -496,13 +497,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>différent de</h3>
 <p>Pour voir si un nombre est différent, on utilise le != qui permettra de poser la question si 2 variables sont identique ou non.</p>
 <pre>
-&lt;?php
-    $different1 = 69;
-    $different2 = 42;
+<span class="balisePHP">&lt;?php</span>
+    <span class="variable">$different1</span> = 69;
+    <span class="variable">$different2</span> = 42;
 
-    var_dump($different1 != $different2);
+    var_dump(<span class="variable">$different1</span> != <span class="variable">$different2</span>);
     echo 'Ici $different1 est bien différent de $different2 donc le boulean affiche bien true';
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $different1 = 69;
@@ -512,13 +513,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     echo 'Ici $different1 est bien différent de $different2 donc le boulean affiche bien true';
 ?>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $different1 = 69;
     $different2 = 69;
 
     var_dump($different1 != $different2);
     echo 'ici $different1 est bien égale à $different2 et donc le boolean renvoi bien false.';
-?&gt;
+<span class="balisePHP">?&gt;</span>
 
 </pre>
 <?php
@@ -530,13 +531,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <p>On a aussi la possibilité de vérifier le type tout en les différenciant soit avec le !==</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $different1 = 69;
     $different2 = "69";
 
     var_dump($different1 !== $different2);
     echo 'ici $different1 n\'est plus égale à $different2 vu qu\' on a deux types différent donc le boolean renvoi bien true.';
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $different1 = 69;
@@ -548,14 +549,14 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Supérieur</h3>
 <p>on utilise le caractère > pour vérifier si un nombr est supérieur à un autre.</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $superieur1 = 32;
     $superieur2 = 10;
     $resultSuperieur = $superieur1 > $superieur2;
 
     var_dump($resultSuperieur);
     echo 'On affiche bien que la la variable $superieur1 est belle et bien supérieur à la variable $superieur2 soit true.';
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $superieur1 = 32;
@@ -568,7 +569,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Supérieur ou égale</h3>
 <p>on utilise les caractères >= pour vérifier si un nombre est supérieur ou égale à un autre nombre.</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $superieurEgale1 = 69;
     $superieurEgale2 = 79;
     $superieurEgale3 = 38;
@@ -587,7 +588,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     echo 'On affiche false que la la variable $superieurEgale1 est de nouveau bien inférieur à la variable $superieurEgale4.&lt;br /&gt;';
     var_dump($resultSuperieurEgale4);
     echo 'On affiche bien true vue que la la variable $superieurEgale1 est belle et bien EGALE à la variable $superieurEgale5.';
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $superieurEgale1 = 69;
@@ -612,14 +613,14 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>inférieur</h3>
 <p>On utilise le caractère < pour vérifier si un nombre est bien inférieur à un autre.</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $inferieur1 = 100;
     $inferieur2 = 150;
     $resultInferieur = $inferieur1 < $inferieur2;
 
     var_dump($resultInferieur);
     echo 'On affiche bien que la la variable $inferieur1 est belle et bien supérieur à la variable $inferieur2 soit true.';
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $inferieur1 = 100;
@@ -632,7 +633,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>inférieur ou égale</h3>
 <p>On utilise les caractères <= pour vérifier si un nombre est bien inférieur ou égale à un autre.</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $inferieurEgale1 = 90;
     $inferieurEgale2 = 32;
     $inferieurEgale3 = 150;
@@ -651,7 +652,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     echo 'On affiche true vu que la la variable $inferieurEgale1 est de égale à la variable $inferieurEgale4.&lt;br /&gt;';
     var_dump($resultInferieurEgale4);
     echo 'On affiche bien true vue que la la variable $inferieurEgale1 est belle et bien inferieur à la variable $inferieurEgale4.';
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $inferieurEgale1 = 90;
@@ -682,12 +683,12 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 </ul>
 <p>Ci dessous un autre exemple détaillé.</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $note1 = 8;
     $resultatNote1 = ($note1 <= 12)? "Il faut que tu sois un peu plus rigoureux dans ton travail... allez accroche toi !" : "C'est bien tu es dans la moyenne. Encore un effort tu peux mieux faire !";
 
     echo "&lt;mark&gt;" . $resultatNote1 . "&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $note1 = 8;
@@ -697,12 +698,12 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <p>Ci dessous le même exemple que précédemment mais avec un toute autre résultat.</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $note2 = 18;
     $resultatNote2 = ($note12 <= 12)? "Il faut que tu sois un peu plus rigoureux dans ton travail... allez accroche toi !" : "C'est bien tu es dans la moyenne. Encore un effort tu peux mieux faire !";
     
     echo "&lt;mark&gt;" . $resultatNote2 . "&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $note2 = 18;
@@ -715,10 +716,10 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <p>Le coalsing permet de vérifier un certain nombre de valeur sans devoir inscrire une multitude de condition.</p>
 <p>Exemple d'une question sur la couleur d'un crayon. Ici je ne définit rien et donc le résultat sera le dernier élément saisie.</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $couleurCrayon = $bleu ?? $rouge ?? $vert ?? $noir ?? "Je n'ai plus de stylo..";
         echo $couleurCrayon;
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
     <?php
         $couleurCrayon = $bleu ?? $rouge ?? $vert ?? $noir ?? "Je n'ai plus de stylo..";
@@ -726,11 +727,11 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     ?>
 <p>Même exemple avec la définition d'une couleur avant. Ici je spécifie une couleur rouge et donc il va rechercher si une variable existe et si oui il affichera le message adéquat.</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $rouge = "Je n'ai plus de stylo rouge...";
         $couleurCrayon = $bleu ?? $rouge ?? $vert ?? $noir ?? "Je n'ai plus de stylo..";
         echo $couleurCrayon;
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
     <?php
         $rouge = "Je n'ai plus de stylo rouge...";
@@ -741,13 +742,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <p>Space Chip est le nouveau nom de ce comparateur. Il permet de vérifier 3 choses en une opération. 1 si il est égale et donc il affichera 0. Si il est supérieur il affichera 1 et si il est inférieur il affichera -1</p>
 <h4>Exemple 1 - 2 nombres égaux.</h4>
 <pre>
-&lt;?php 
+<span class="balisePHP">&lt;?php</span> 
     $spacechip1 = 69;
     $spacechip2 = 69;
     $resultSpacechip1 = $spacechip1 <=> $spacechip2;
 
     echo "&lt;mark&gt;" . $resultSpacechip1 ."&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php 
     $spacechip1 = 69;
@@ -758,13 +759,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 2 - le premier nombre est supérieur</h4>
 <pre>
-&lt;?php 
+<span class="balisePHP">&lt;?php</span> 
     $spacechip3 = 69;
     $spacechip4 = 39;
     $resultSpacechip2 = $spacechip3 <=> $spacechip4;
 
     echo "&lt;mark&gt;" . $resultSpacechip2 ."&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php 
     $spacechip3 = 69;
@@ -775,13 +776,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 3 - le premier nombre est inférieur</h4>
 <pre>
-&lt;?php 
+<span class="balisePHP">&lt;?php</span> 
     $spacechip5 = 69;
     $spacechip6 = 99;
     $resultSpacechip3 = $spacechip5 <=> $spacechip6;
 
     echo "&lt;mark&gt;" . $resultSpacechip3 ."&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php 
     $spacechip5 = 69;
@@ -795,12 +796,12 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>version longue</h3>
 <p>Ici on définit 1 comme valeur de départ. On incrémente ce dernier pour obtenir le résultat de 2 </p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $incrementation1 = 1;
         echo "&lt;mark&gt;" . $incrementation1 . "&lt;/mark&gt; &lt;br /&gt;";
         $incrementation1 = $incrementation1 + $incrementation1;
         echo "&lt;mark&gt;" . $incrementation1 . "&lt;/mark&gt;";
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $incrementation1 = 1;
@@ -811,12 +812,12 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>version courte</h3>
 <p>Même exemple avec une version raccourçis du code..</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $incrementation1 = 1;
         echo "&lt;mark&gt;" . $incrementation1 . "&lt;/mark&gt; &lt;br /&gt;";
         $incrementation1++;
         echo "&lt;mark&gt;" . $incrementation1 . "&lt;/mark&gt;";
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $incrementation1 = 1;
@@ -829,12 +830,12 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>version longue</h3>
 <p>Ici on définit 10 comme valeur de départ. On décrémente ce dernier pour obtenir le résultat de 0 soit 10 - 10 = 0 </p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $decrementation = 10;
         echo "&lt;mark&gt;" . $decrementation . "&lt;/mark&gt; &lt;br /&gt;";
         $decrementation = $decrementation - $decrementation;
         echo "&lt;mark&gt;" . $decrementation . "&lt;/mark&gt;";
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $decrementation = 10;
@@ -845,12 +846,12 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>version courte</h3>
 <p>Même exemple avec une version raccourçis du code.. le résultat sera lui différent.</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $decrementation = 10;
         echo "&lt;mark&gt;" . $decrementation . "&lt;/mark&gt; &lt;br /&gt;";
         $decrementation--;
         echo "&lt;mark&gt;" . $decrementation . "&lt;/mark&gt;";
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $decrementation = 10;
@@ -863,13 +864,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <p>Pour écrire ET on utilise le mot clé "and" ou bien "&&" aussi appelé esperluette.</p>
 <h4>Exemple 1 - avec and</h4>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $et1 = 18;
     $et2 = 20;
     
     var_dump( $et1 > 12 and $et2 < 21 );
     echo "&lt;mark&gt; Le résultat sera true vu que les opérations sont toutes les 2 vrais.&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $et1 = 18;
@@ -880,13 +881,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 2 - avec &&</h4>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $et3 = 18;
     $et4 = 20;
     
     var_dump( $et3 > 12 && $et4 < 21 );
     echo "&lt;mark&gt; Le résultat sera true vu que les opérations sont toutes les 2 vrais.&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $et3 = 18;
@@ -899,13 +900,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 
 <h4>Exemple 3 - même exemple avec une seule condition vrai AVEC and</h4>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $et1 = 5;
     $et2 = 30;
     
     var_dump( $et1 > 12 and $et2 < 50 );
     echo "&lt;mark&gt; Le résultat sera false vu que la premier opération est fausse.&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $et1 = 5;
@@ -917,13 +918,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 
 <h4>Exemple 3 - même exemple avec une seule condition vrai AVEC &&</h4>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $et1 = 5;
     $et2 = 30;
     
     var_dump( $et1 > 12 && $et2 < 50 );
     echo "&lt;mark&gt; Le résultat sera false vu que la premier opération est fausse.&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $et1 = 5;
@@ -936,13 +937,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <p>Pour écrire OU on utilise le mot clé "or" ou bien "||" aussi appelé pipe. Il faut savoir qu'à la différence du ET c'est qu'ici si une opération est juste alors la réponse sera vrai.</p>
 <h4>Exemple 1 - avec or</h4>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $ou1 = 69;
     $ou2 = 33;
     
     var_dump( $ou1 > 12 or $ou2 < 69 );
     echo "&lt;mark&gt; Le résultat sera true vu que les opérations sont toutes les 2 vrais.&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $ou1 = 69;
@@ -953,13 +954,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 2 - avec &&</h4>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $ou3 = 99;
     $ou4 = 39;
     
     var_dump( $ou3 > 50 || $ou2 < 100 );
     echo "&lt;mark&gt; Le résultat sera true vu que les opérations sont toutes les 2 vrais.&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $ou3 = 99;
@@ -972,13 +973,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 
 <h4>Exemple 3 - autre exemple avec une seule condition vrai AVEC or</h4>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $ou5 = 10;
     $ou6 = 80;
     
     var_dump( $ou5 > 5 or $ou6 < 50 );
     echo "&lt;mark&gt; Le résultat sera false vu que la seconde opération est fausse.&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $ou5 = 10;
@@ -990,13 +991,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 
 <h4>Exemple 4 - même exemple avec une seule condition vrai AVEC ||</h4>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $ou7 = 10;
     $ou8 = 80;
     
     var_dump( $ou7 > 11 || $ou8 < 90 );
     echo "&lt;mark&gt; Le résultat sera true vu qu'au moins la seconde opération est juste.&lt;/mark&gt;";
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $ou7 = 10;
@@ -1010,10 +1011,10 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h4>exemple normal</h4>
 <p>j'affiche ici une variable avec un boulean à true. On obtiendra via le var_dump true comme réponse.</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $normal = true;
     var_dump($normal);
-?&gt;
+<span class="balisePHP">?&gt;</span>
 <?php
     $normal = true;
     var_dump($normal);
@@ -1022,10 +1023,10 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h4>exemple inversé</h4>
 <p>j'affiche ici une variable avec un boulean à true. Mais j'ajoute dans mon var_dump avant la variable le ! pour afficher l'inverse du résultat soit false.</p>
 <pre>
-&lt;?php
+<span class="balisePHP">&lt;?php</span>
     $normal = true;
     var_dump(!$normal);
-?&gt;
+<span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $normal = true;
@@ -1035,13 +1036,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <p>L'opérateur xor est très particulier, on doit obligatoirement obtenir une seule condition de vrai pour afficher true. Si 2 confitions sont vrai ou fausses, on obtiendra false. /!\ n'existe pas dans le javascript !!</p>
 <h4>Exemple 1 - 2 réponses vrai et on obtient false avec xor</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $xor1 = 10;
         $xor2 = 20;
 
         var_dump($xor1 > 5 xor $xor2 < 50);
         echo '$xor1 est bien supérieur à 5 et $xor2 est bien inférieur à 50 donc les 2 réponses sont vrai... On affiche avec xor false...';
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $xor1 = 10;
@@ -1052,13 +1053,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 2 - 2 réponses fausses et on obtient false avec xor</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $xor3 = 1;
         $xor4 = 10;
 
         var_dump($xor3 > 2 xor $xor4 < 9);
         echo '$xor3 n\'est pas supérieur à 2 et $xor4 n'est également pas inférieur à 9 donc les 2 réponses sont fausses... On affiche donc avec xor false...';
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $xor3 = 1;
@@ -1069,13 +1070,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 3 - 1 réponse est vrai et donc on obtient ici true avec xor</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $xor5 = 50;
         $xor6 = 60;
 
         var_dump($xor5 > 100 xor $xor6 < 70);
         echo '$xor5 n\'est pas supérieur à 100 et $xor6 est par contre bien inférieur à 70 donc une des deux réponses est vrai. On affiche donc avec xor true...';
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $xor5 = 50;
@@ -1087,13 +1088,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Concaténé 2 string entre elles.</h3>
 <h4>version longue</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $concatenation1 = "Salut moi je m'appel : ";
         $concatenation2 = "Alain Guillon";
         $concatenation 1 = $concatenation1 . $concatenation2;
 
         echo $concatenation1;
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $concatenation1 = "Salut moi je m'appel : ";
@@ -1104,13 +1105,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>version courte</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $concatenation1 = "Salut moi je m'appel : ";
         $concatenation2 = "Alain Guillon";
         $concatenation 1 .= $concatenation2;
 
         echo $concatenation1;
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $concatenation1 = "Salut moi je m'appel : ";
@@ -1123,7 +1124,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Si / sinon si / sinon </h3>
 <h4>Exemple 1 - SI (if)</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $motivation = 1;
 
         if ( $motivation < 3) {
@@ -1133,7 +1134,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         } else {
             echo "Tu es vraiment motivé c'est topissime ensembles tu verras on va y arriver !!";
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $motivation = 1;
@@ -1148,7 +1149,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 2 - SINON SI (else if)</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $motivation = 5;
 
         if ( $motivation < 3) {
@@ -1158,7 +1159,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         } else {
             echo "Tu es vraiment motivé c'est topissime ensembles tu verras on va y arriver !!";
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $motivation = 5;
@@ -1173,7 +1174,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 3 - SINON (else)</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $motivation = 8;
 
         if ( $motivation < 3) {
@@ -1183,7 +1184,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         } else {
             echo "&lt;mark&gt;Tu es vraiment motivé c'est topissime ensembles tu verras on va y arriver !!&lt;/mark&gt;";
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $motivation = 8;
@@ -1201,7 +1202,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Exemple 1 - La réponse par défaut</h3>
 <p>Ici j'affiche la réponse : Choisis un objectif</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $objectif = "";
 
         switch ($objectif) {
@@ -1219,7 +1220,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
             default :
                 echo "Choisis un objectif";
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $objectif = "";
@@ -1243,7 +1244,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Exemple 2 - La 3ème réponse</h3>
 <p>ici j'afficherai la réponse : Bonne chance !</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $objectif = "Coder mon site web";
 
         switch ($objectif) {
@@ -1261,7 +1262,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
             default :
                 echo "Choisis un objectif";
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $objectif = "Coder mon site web";
@@ -1285,7 +1286,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Exemple 3 - La 1ème réponse</h3>
 <p>ici j'afficherai la réponse : Freelance, c'est génial !</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $objectif = "travailler en Freelance";
 
         switch ($objectif) {
@@ -1303,7 +1304,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
             default :
                 echo "Choisis un objectif";
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $objectif = "travailler en Freelance";
@@ -1328,7 +1329,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>While</h3>
 <p>avec la boucle while (tant que) on peut très vite être confronté à une boucle infini.</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $while = 0;
 
         while ( $while <= 5 ) {
@@ -1336,7 +1337,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
             // L'incrémentation est obligatoire au risque de se retrouver avec une boucle infini.
             $while++;
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $while = 0;
@@ -1350,14 +1351,14 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Do while</h3>
 <p>A la différence du while qui pose tout d'abord la question de savoir si la condition est vrai afin d'afficher le code, ici le do while c'est on affiche directement le code à exécuté une première fois puis on pose la question si la boucle est vrai afin d'afficher ou non le code à nouveau.</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $doWhile = 0;
 
         do {
             echo "La valeur de ma variable do while est : $doWhile &lt;br /&gt;";
             $doWhile++;
         } while ( $doWhile <= 5);
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $doWhile = 0;
@@ -1371,13 +1372,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <p>Une boucle fait sensiblement la même chose qu'un while à contrario qu'on l'utilise uniqument quand on ne sait pas combien d'élément nous allons afficher.</p>
 <p>la syntaxe : <mark>for ( $variable = 0; condition; incrementation ) { code a exécuter }</mark></p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         $for = 0;
 
         for ( $for = 0; $for <= 5; $for++ ) {
             echo "La valeur de ma variable for est : $for &lt;br /&gt;";
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $for = 0;
@@ -1391,11 +1392,11 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>Déclaration d'une fonction</h3>
 <p>le code de la fonction ci-dessous n'affichera rien du tout. En effet nous avons simplement déclarer la fonction en aucun cas on l'initialise</p>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         function maFonction() {
             echo "Coucou";
         }
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     function maFonction() {
@@ -1404,9 +1405,9 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h3>Initialisation de la function précédente</h3>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         maFonction();
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     maFonction();
@@ -1415,14 +1416,14 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <p>On peut spécifier un argument dans une fonction.</p>
 <h4>exemple d'un argument de type message</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         function presentationPerso($message) {
             echo $message;
         }
 
         $presentationPerso("Salut je m'appel Alain GUILLON, je désire plus que tout devenir un grand nom dans le milieu du developpement informatique");
         $presentationPerso("&lt;br /&gt;Second texte avec exactement la même fonction...");
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     function presentationPerso($message) {
@@ -1436,13 +1437,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <p>Dans une fonction, on peut saisir des arguments par défaut. Ainsi si on ne saisi rien, on obtiendra tout de même un message.</p>
 <h4>Exemple 1 - Message par défaut</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         function myName ($nom = "Nom non spécifié") {
             echo "Je m'appel : $nom";
         }
 
         myName();
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     function myName ($nom = "Nom non spécifié") {
@@ -1453,13 +1454,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>Exemple 2 - nom saisi</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         function myName2 ($nom = "Nom non spécifié") {
             echo "Je m'appel : $nom";
         }
 
         myName2("Alain Guillon");
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     function myName2 ($nom = "Nom non spécifié") {
@@ -1470,7 +1471,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h3>ajouter un 2emes arguments</h3>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         function objectifPerso ($objectif, $combien) {
             for ( $i = 0; $i <= $combien; $i++ ) {
                 echo "$objectif &lt;br /&gt;";
@@ -1478,7 +1479,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         }
 
         objectifPerso("Je veux être un super DEVELOPPEUR", 5);
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     function objectifPerso ($objectif, $combien) {
@@ -1491,13 +1492,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h3>retourner une valeur dans une fonction</h3>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
         function addition($x, $y, $z) {
             return $x + $y + $z;
         }
 
         echo "Le résultat de mon opération est : " . addition(15, 32, 69);
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     function addition($x, $y, $z) {
@@ -1508,17 +1509,17 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h3>PHP 7 et la restriction du type imposer lors de la saisie de tel ou tel donnée</h3>
 <p>Avec php 7, nous pouvons forcer l'utilisateur à saisir obligatoirement un integer ou un string etc.. mais pour celà il faut avant le DOCTYPE saisir :</p>
-<p><strong>&lt;?php declare(strict_types=1); ?&gt;</strong></p>
+<p><strong><span class="balisePHP">&lt;?php</span> declare(strict_types=1); <span class="balisePHP">?&gt;</span></strong></p>
 <p>Ainsi, on pourra dans nos fonction saisir le type avant la variable et comme ça, l'utilisateur obtiendra une erreur si le type saisi ne correspond tout simplement pas.</p>
 <h4>exemple 1 - saisi correcte</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
        function saisiStrictValid(int $numberX, int $numberY) {
            return $numberX + $numberY;
        }
 
        echo saisiStrictValid(10,10);
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     function saisiStrictValid(int $numberX, int $numberY):int {
@@ -1529,21 +1530,232 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 ?>
 <h4>exemple 2 - saisi incorrecte</h4>
 <pre>
-    &lt;?php
+    <span class="balisePHP">&lt;?php</span>
        function saisiStrictNonValid(int $numberA, int $numberB) {
            return $numberA + $numberB;
        }
 
        echo saisiStrictNonValid(69,"35");
-    ?&gt;
+    <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     function saisiStrictNonValid(int $numberA, int $numberB):int {
         return $numberA + $numberB;
     }
 
-    echo saisiStrictNonValid(69,"35");
+    // echo saisiStrictNonValid(69,"35");
 ?>
+<p>Je suis obligé de commenter cette ligne de code : echo saisiStrictNonValid(69,"35"); sinon le code qui suit ne fonctionnera plus..</p>
+<img src="http://puu.sh/to670/deaca893dc.png" alt="erreur qui sera affiché" />
+<h2>Les tableaux Array</h2>
+<p>pour ce tableau je vais garder du début à la fin le même tableau.</p>
+<p>L'affichage du contenu brut d'un tableau peut être affiché de 2 manières</p>
+<h3>methode 1 - directement en php.</h3>
+<?php      
+    $semaine = array("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
+    var_dump($semaine);
+?>
+<h3>methode 2 - en php mais dans une balise pre</h3>
+<pre>
+    <?php      
+        $semaine = array("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
+        var_dump($semaine);
+    ?>
+</pre>
+<p>La lisibilité est nettement plus simple dans une balise pre. (La couleur est uniquement du à mon fichier stylePHP.css).</p>
+<h3>accéder à une variable spécifique du array</h3>
+<p>pour acceder à une donner spécifique du tableau, on réutilise le nom de la variable du tableau et on lui associe des [] avec à l'intérieur l'indice que l'on souhaite rechercher. Pour rappel l'indice d'un tableau commence toujours à 0. Donc :</p>
+<ul></ul>
+    <li>lundi = 0</li>
+    <li>mardi = 1</li>
+    <li>mercredi = 2</li>
+    <li>jeudi = 3</li>
+    <li>vendredi = 4</li>
+    <li>samedi = 5</li>
+    <li>dimanche = 6</li>
+</ul>
+<p>Donc le code pour afficher lundi sera le suivant :</p>
+<pre>
+    &lt;?php 
+        $lundi = $semaine[0];
+        echo $lundi;
+    ?&gt;
+</pre>
+<?php 
+    $lundi = $semaine[0];
+    echo $lundi;
+?>
+<h3>compter le nombre d'élément dans un tableau</h3>
+<p>pour compter le nombre d'élément dans un tableau on utilise la fonction count().</p>
+<pre>
+    &lt;?php echo count($semaine); ?&gt;
+</pre>
+<?php echo count($semaine); ?>
+<h3>afficher tous les éléments d'un tableaux</h3>
+<pre>
+    &lt;?php
+        for ( $i = 0; $i <= 6; $i++) {
+            echo "jour : " . $semaine[$i] . "&lt;br /&gt;";
+        }
+    ?&gt;
+</pre>
+<?php
+    for ( $i = 0; $i <= 6; $i++) {
+        echo "L'index $i affichera : " . $semaine[$i] . "<br />";
+    }
+?>
+<h3>Et si on ne sait pas combien d'élément comporte le tableau ?</h3>
+<p>Là un cas de figure qui peut arrivé souvent. On ne sait pas combien d'élément dispose le tableau. En l'occurence, nous le savons mais imaginons qu'on ne le sait pas. On a vu la fonction count() ainsi on peut la réutiliser dans notre boucle.</p>
+<pre>
+    &lt;?php
+        for ( $i = 0; $i < count($semaine); $i++ ) {
+            echo "Même réponse que précédemment, l'index $i correspond à : " . $semaine[$i] . ".&lt;br /&gt;";
+        }
+    ?&gt;
+</pre>
+<?php
+    for ( $i = 0; $i < count($semaine); $i++ ) {
+        echo "Même réponse que précédemment, l'index $i correspond à : " . $semaine[$i] . ".<br />";
+    }
+?>
+<p>L'avantage ici c'est que si on est amené à ajouter des jours ou en enlevé, on ne sera pas obliger de remodifier notre boucle, elle s'adaptera automatiquement.</p>
+<h2>Tableau associatif</h2>
+<h3>conception d'un tableau associatif :</h3>
+<pre>
+    &lt;?php
+        $identiter = array (
+                "nom" => "Caron",
+                "prenom" => "marjorie",
+                "age" => 32,
+                "sexe" => "féminin"
+        );
+
+        var_dump($identiter);
+    ?&gt;
+</pre>
+<?php
+    $identiter = array (
+        "nom" => "Caron",
+        "prenom" => "marjorie",
+        "age" => 32,
+        "sexe" => "féminin"
+    );
+
+    var_dump($identiter);
+?>
+<h3>Récupérer une valeur d'un tableau associatif</h3>
+<p>Si on désire obtenir le résultat d'un élément précis dans un tableau associatif, on sélectionnera la variable du tableau suivi de [] avec pour contenu soit dans notre variable $identiter : "nom" qui correpond à 0 et "sexe" qui correspondrai à l'indice 3</p>
+<h4>exemple</h4>
+<pre>
+    &lt;?php
+        echo "Le nom de cette personne est : " . $identiter["nom"] . "&lt;br /&gt;";
+        echo "Le sexe de cette personne est : " . $identiter["sexe"];
+    ?&gt;
+</pre>
+<?php
+    echo "Le nom de cette personne est : " . $identiter["nom"] . "<br />";
+    echo "Le sexe de cette personne est : " . $identiter["sexe"];
+?>
+<h2>Quelle boucle utiliser pour un tableau associatif</h2>
+<p>la boucle à utiliser pour un tableau associatif est la boucle foreach (pour chaque).</p>
+<h3>la syntaxe</h3>
+<p>On va créer un tableau avec 5 prénoms à l'intérieur.</p>
+<pre>
+    &lt;?php 
+        $prenoms = array (
+            "Position1" => "Sheryle",
+            "Position2" => "Océane",
+            "Position3" => "Éléanore",
+            "Position4" => "Marjorie",
+            "Position5" => "Alain",
+            "Position6" => "France"
+        );
+
+        var_dump( $prenoms ); 
+    ?&gt;
+</pre>
+<?php
+    $prenoms = array (
+        "Position1" => "Sheryle",
+        "Position2" => "Océane",
+        "Position3" => "Éléanore",
+        "Position4" => "Marjorie",
+        "Position5" => "Alain",
+        "Position6" => "France"
+    );
+    
+    var_dump( $prenoms ); 
+?>
+<p>La syntaxe de la boucle foreach est la suivante :</p>
+<pre>
+    &lt;?php
+        foreach ( $variable as $key => $value) {
+            echo $key . " correspond à la valeur : " . $value;
+        }
+    ?&gt;
+</pre>
+<p>Ci dessous j'affiche le résultat de ma boucle foreach</p>
+<pre>
+    &lt;?php
+        foreach ( $prenoms as $key => $value ) {
+            echo "En $key on trouve le prénom suivant : $value <br />" ;
+        }
+    ?&gt;
+</pre>
+<?php
+    foreach ( $prenoms as $key => $value ) {
+        echo "En $key on trouve le prénom suivant : $value <br />";
+    }
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

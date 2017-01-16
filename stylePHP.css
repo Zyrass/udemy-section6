@@ -1,0 +1,28 @@
+pre {
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+}
+
+.balisePHP {
+    color: lightskyblue;
+}
+.variable {
+    color: lightgoldenrodyellow;
+}
+.function {
+    color: lightsalmon;
+    font-style: italic;
+}
+.commentaire {
+    color: lightslategray;
+}
+.integer {
+    color: lightcoral;
+}
+.simpleCote, .doubleCote {
+    color: lightgreen;
+}
+.simpleCote {
+    font-style: oblique;
+}
