@@ -2,11 +2,21 @@
     // Déclaration du type à saisir obligatoirement lors d'une saisi.
     declare(strict_types=1);
 ?>
+<?php
+    // Initialisation de notre super global $_SESSION.
+    session_start();
+
+    $_SESSION["nom"] = "Eléanore";
+?>
+<?php
+    setcookie("myCookie", "alain", time() + 3600*24*30);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="stylePHP.css" type="text/css">
 </head>
 <body>
@@ -237,16 +247,16 @@ soit :
         <ul>
             <li>$jourDeLaSemaine = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","dimanche");</li>
             <li>A savoir qu'on ne peux pas afficher un array en appelant uniquement la variable.</li>
-            <li> Avec un var_dump() ça fonctionne :
+            <li> Avec un print_r() ça fonctionne :
             <pre>
 <span class="balisePHP">&lt;?php</span>
     <span class="variable">$jourDeLaSemaine</span> = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","dimanche");
-    var_dump(<span class="variable">$jourDeLaSemaine</span>);
+    print_r(<span class="variable">$jourDeLaSemaine</span>);
 <span class="balisePHP">?&gt;</span>
             </pre>
             <?php
                 $jourDeLaSemaine = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","dimanche");
-            var_dump($jourDeLaSemaine);
+            print_r($jourDeLaSemaine);
             ?>
             </li>
             
@@ -262,7 +272,7 @@ class Objet {
 }
 
 <span class="variable">$objetOne</span> = new Objet();
-var_dump(<span class="variable">$objetOne</span>);
+print_r(<span class="variable">$objetOne</span>);
                 </pre>
                 ce qui affichera :<mark>
                 <?php
@@ -272,7 +282,7 @@ var_dump(<span class="variable">$objetOne</span>);
                     }
                 }
                 $objetOne = new Objet();
-                var_dump($objetOne);
+                print_r($objetOne);
                 ?></mark>
             </li>
         </ul>
@@ -280,19 +290,19 @@ var_dump(<span class="variable">$objetOne</span>);
         <ul>
             <li>
             $null = null;
-            var_dump($null);
+            print_r($null);
             </li>
             <li>soit :
             <pre>
 <span class="balisePHP">&lt;?php</span>
     <span class="variable">$null</span> = null;
-    var_dump(<span class="variable">$null</span>);
+    print_r(<span class="variable">$null</span>);
 <span class="balisePHP">?&gt;</span>
             </pre>
             <mark>
             <?php
                 $null = null;
-                var_dump($null);
+                print_r($null);
             ?>
             </mark>
             </li>
@@ -300,30 +310,30 @@ var_dump(<span class="variable">$objetOne</span>);
         </ul>
 </ul>
 
-<h2>var_dump() en php est l'équivalent d'un console.log() en javascripts</h2>
-<p>En javascript nous utilisions le console.log() pour afficher dans la console un résultat, ici en php le var_dump affichera directement sur la page ce qu'on a spécifier entre parenthèse.</p>
-<p>Exemple de 2 var_dump(). Le premier concernera une string et le second un nombr entier.</p>
+<h2>print_r() en php est l'équivalent d'un console.log() en javascripts</h2>
+<p>En javascript nous utilisions le console.log() pour afficher dans la console un résultat, ici en php le print_r affichera directement sur la page ce qu'on a spécifier entre parenthèse.</p>
+<p>Exemple de 2 print_r(). Le premier concernera une string et le second un nombr entier.</p>
 <pre>
     <span class="balisePHP">&lt;?php</span> 
         <span class="variable">$myString</span> = "J'adore le code informatique";
-        var_dump(<span class="variable">$myString</span>);
+        print_r(<span class="variable">$myString</span>);
     <span class="balisePHP">?&gt;</span>
 </pre>
 soit : 
 <mark><?php 
     $myString = "J'adore le code informatique";
-    var_dump($myString);
+    print_r($myString);
 ?> </mark>(28 correspond au nombre de caractères).
 <pre>
     <span class="balisePHP">&lt;?php</span> 
         <span class="variable">$myInteger</span> = 3;
-        var_dump(<span class="variable">$myInteger</span>);
+        print_r(<span class="variable">$myInteger</span>);
     <span class="balisePHP">?&gt;</span>
 </pre>
 soit : 
 <mark><?php 
     $myInteger = 3;
-    var_dump($myInteger);
+    print_r($myInteger);
 ?> </mark>(3 correspond au nombre définit dans la variable).
 
 <h2>Quelques fonctions pour les chaines de caractères...</h2>
@@ -366,7 +376,7 @@ affichera :
         echo "- La phrase d'origine pour la même fonction : <br />" . $functionString3;
     ?>
 <h3>Trouver la position d'un mot précis</h3>
-<p>A savoir que la function qui va suivre est comprise comme un boolean. Si le résultat est vrai alors il affichera le résultat. En revanche, si le résultat n'existe pas, à l'écran rien ne sera affiché hormis si on utilise un var_dump() de la fonction qui affichera belle et bien le false à l'écran.</p>
+<p>A savoir que la function qui va suivre est comprise comme un boolean. Si le résultat est vrai alors il affichera le résultat. En revanche, si le résultat n'existe pas, à l'écran rien ne sera affiché hormis si on utilise un print_r() de la fonction qui affichera belle et bien le false à l'écran.</p>
 <pre>
     <span class="balisePHP">&lt;?php</span>
         <span class="variable">$functionString4</span> = "Utilisation de la fonction <strong>strpos(arg1, arg2)</strong> qui prends comme premier argument la variable à rechercher. LE second argument quand à lui correspond au mot clé à chercher.";
@@ -476,11 +486,11 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $nombreInt = 32;
 
     echo "Ci dessous le nombre 32 écrit dans une chaine de caractère soit le type string <br />";
-    var_dump($nombreString);
+    print_r($nombreString);
     echo "<br />Ci dessous le même nombre mais avec le type integer <br />";
-    var_dump($nombreInt);
-    echo "<br />Voici le résultat afficher dans un var_dump() soit vrai<br />";
-    var_dump($nombreInt == $nombreString);
+    print_r($nombreInt);
+    echo "<br />Voici le résultat afficher dans un print_r() soit vrai<br />";
+    print_r($nombreInt == $nombreString);
 ?>
 <p>Avec le triple égale soit : "===" on <strong>NE VALIDE PAS LE CONTENU VU QUE LE TYPE NE CORRESPOND PAS</strong></p>
 <?php
@@ -488,11 +498,11 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $nombreInt = 32;
 
     echo "Ci dessous à nouveau le nombre 32 écrit dans une chaine de caractère soit le type string <br />";
-    var_dump($nombreString);
+    print_r($nombreString);
     echo "<br />Ci dessous de nouveau le même nombre mais avec le type integer <br />";
-    var_dump($nombreInt);
-    echo "<br />Voici le résultat afficher dans un var_dump() soit cette fois-ci FAUX<br />";
-    var_dump($nombreInt === $nombreString);
+    print_r($nombreInt);
+    echo "<br />Voici le résultat afficher dans un print_r() soit cette fois-ci FAUX<br />";
+    print_r($nombreInt === $nombreString);
 ?>
 <h3>différent de</h3>
 <p>Pour voir si un nombre est différent, on utilise le != qui permettra de poser la question si 2 variables sont identique ou non.</p>
@@ -501,7 +511,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     <span class="variable">$different1</span> = 69;
     <span class="variable">$different2</span> = 42;
 
-    var_dump(<span class="variable">$different1</span> != <span class="variable">$different2</span>);
+    print_r(<span class="variable">$different1</span> != <span class="variable">$different2</span>);
     echo 'Ici $different1 est bien différent de $different2 donc le boulean affiche bien true';
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -509,7 +519,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $different1 = 69;
     $different2 = 42;
 
-    var_dump($different1 != $different2);
+    print_r($different1 != $different2);
     echo 'Ici $different1 est bien différent de $different2 donc le boulean affiche bien true';
 ?>
 <pre>
@@ -517,7 +527,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $different1 = 69;
     $different2 = 69;
 
-    var_dump($different1 != $different2);
+    print_r($different1 != $different2);
     echo 'ici $different1 est bien égale à $different2 et donc le boolean renvoi bien false.';
 <span class="balisePHP">?&gt;</span>
 
@@ -526,7 +536,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $different1 = 69;
     $different2 = 69;
 
-    var_dump($different1 != $different2);
+    print_r($different1 != $different2);
     echo 'ici $different1 est bien égale à $different2 et donc le boolean renvoi bien false.';
 ?>
 <p>On a aussi la possibilité de vérifier le type tout en les différenciant soit avec le !==</p>
@@ -535,7 +545,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $different1 = 69;
     $different2 = "69";
 
-    var_dump($different1 !== $different2);
+    print_r($different1 !== $different2);
     echo 'ici $different1 n\'est plus égale à $different2 vu qu\' on a deux types différent donc le boolean renvoi bien true.';
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -543,7 +553,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $different1 = 69;
     $different2 = "69";
 
-    var_dump($different1 !== $different2);
+    print_r($different1 !== $different2);
     echo 'ici $different1 n\'est plus égale à $different2 vu qu\' on a deux types différent donc le boolean renvoi bien true.';
 ?>
 <h3>Supérieur</h3>
@@ -554,7 +564,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $superieur2 = 10;
     $resultSuperieur = $superieur1 > $superieur2;
 
-    var_dump($resultSuperieur);
+    print_r($resultSuperieur);
     echo 'On affiche bien que la la variable $superieur1 est belle et bien supérieur à la variable $superieur2 soit true.';
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -563,7 +573,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $superieur2 = 10;
     $resultSuperieur = $superieur1 > $superieur2;
 
-    var_dump($resultSuperieur);
+    print_r($resultSuperieur);
     echo 'On affiche bien que la la variable $superieur1 est belle et bien supérieur à la variable $superieur2 soit true.';
 ?>
 <h3>Supérieur ou égale</h3>
@@ -580,13 +590,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $resultSuperieurEgale3 = $superieurEgale1 >= $superieurEgale4;
     $resultSuperieurEgale4 = $superieurEgale1 >= $superieurEgale5;
 
-    var_dump($resultSuperieurEgale1);
+    print_r($resultSuperieurEgale1);
     echo 'On affiche false vu que la variable $superieurEgale1 est belle et bien inferieur à la variable $superieurEgale2.&lt;br /&gt;';
-    var_dump($resultSuperieurEgale2);
+    print_r($resultSuperieurEgale2);
     echo 'On affiche bien true vu que la la variable $superieurEgale1 est belle et bien supérieur à la variable $superieurEgale3.&lt;br /&gt;';
-    var_dump($resultSuperieurEgale3);
+    print_r($resultSuperieurEgale3);
     echo 'On affiche false que la la variable $superieurEgale1 est de nouveau bien inférieur à la variable $superieurEgale4.&lt;br /&gt;';
-    var_dump($resultSuperieurEgale4);
+    print_r($resultSuperieurEgale4);
     echo 'On affiche bien true vue que la la variable $superieurEgale1 est belle et bien EGALE à la variable $superieurEgale5.';
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -601,13 +611,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $resultSuperieurEgale3 = $superieurEgale1 >= $superieurEgale4;
     $resultSuperieurEgale4 = $superieurEgale1 >= $superieurEgale5;
 
-    var_dump($resultSuperieurEgale1);
+    print_r($resultSuperieurEgale1);
     echo 'On affiche false vu que la variable $superieurEgale1 est belle et bien inferieur à la variable $superieurEgale2.<br />';
-    var_dump($resultSuperieurEgale2);
+    print_r($resultSuperieurEgale2);
     echo 'On affiche bien true vu que la la variable $superieurEgale1 est belle et bien supérieur à la variable $superieurEgale3.<br />';
-    var_dump($resultSuperieurEgale3);
+    print_r($resultSuperieurEgale3);
     echo 'On affiche false que la la variable $superieurEgale1 est de nouveau bien inférieur à la variable $superieurEgale4.<br />';
-    var_dump($resultSuperieurEgale4);
+    print_r($resultSuperieurEgale4);
     echo 'On affiche bien true vue que la la variable $superieurEgale1 est belle et bien EGALE à la variable $superieurEgale5.';
 ?>
 <h3>inférieur</h3>
@@ -618,7 +628,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $inferieur2 = 150;
     $resultInferieur = $inferieur1 < $inferieur2;
 
-    var_dump($resultInferieur);
+    print_r($resultInferieur);
     echo 'On affiche bien que la la variable $inferieur1 est belle et bien supérieur à la variable $inferieur2 soit true.';
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -627,7 +637,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $inferieur2 = 150;
     $resultInferieur = $inferieur1 < $inferieur2;
 
-    var_dump($resultInferieur);
+    print_r($resultInferieur);
     echo 'On affiche bien que la la variable $inferieur1 est belle et bien inférieur à la variable $inferieur2 soit true.';
 ?>
 <h3>inférieur ou égale</h3>
@@ -644,13 +654,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $resultInferieurEgale3 = $inferieurEgale1 <= $inferieurEgale4;
     $resultInferieurEgale4 = $inferieurEgale1 <= $inferieurEgale5;
 
-    var_dump($resultInferieurEgale1);
+    print_r($resultInferieurEgale1);
     echo 'On affiche false vu que la variable $inferieurEgale1 n\'est pas inferieur à la variable $inferieurEgale2.&lt;br &gt;>';
-    var_dump($resultInferieurEgale2);
+    print_r($resultInferieurEgale2);
     echo 'On affiche bien true vu que la la variable $inferieurEgale1 est belle et bien inférieur à la variable $inferieurEgale3.&lt;br /&gt;';
-    var_dump($resultInferieurEgale3);
+    print_r($resultInferieurEgale3);
     echo 'On affiche true vu que la la variable $inferieurEgale1 est de égale à la variable $inferieurEgale4.&lt;br /&gt;';
-    var_dump($resultInferieurEgale4);
+    print_r($resultInferieurEgale4);
     echo 'On affiche bien true vue que la la variable $inferieurEgale1 est belle et bien inferieur à la variable $inferieurEgale4.';
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -665,13 +675,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $resultInferieurEgale3 = $inferieurEgale1 <= $inferieurEgale4;
     $resultInferieurEgale4 = $inferieurEgale1 <= $inferieurEgale5;
 
-    var_dump($resultInferieurEgale1);
+    print_r($resultInferieurEgale1);
     echo 'On affiche false vu que la variable $inferieurEgale1 n\'est pas inferieur à la variable $inferieurEgale2.<br />';
-    var_dump($resultInferieurEgale2);
+    print_r($resultInferieurEgale2);
     echo 'On affiche bien true vu que la la variable $inferieurEgale1 est belle et bien inférieur à la variable $inferieurEgale3.<br />';
-    var_dump($resultInferieurEgale3);
+    print_r($resultInferieurEgale3);
     echo 'On affiche true vu que la la variable $inferieurEgale1 est de égale à la variable $inferieurEgale4.<br />';
-    var_dump($resultInferieurEgale4);
+    print_r($resultInferieurEgale4);
     echo 'On affiche bien true vue que la la variable $inferieurEgale1 est belle et bien inferieur à la variable $inferieurEgale4.';
 ?>
 <h3>Opérateur SI en une LIGNE</h3>
@@ -868,7 +878,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $et1 = 18;
     $et2 = 20;
     
-    var_dump( $et1 > 12 and $et2 < 21 );
+    print_r( $et1 > 12 and $et2 < 21 );
     echo "&lt;mark&gt; Le résultat sera true vu que les opérations sont toutes les 2 vrais.&lt;/mark&gt;";
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -876,7 +886,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $et1 = 18;
     $et2 = 20;
     
-    var_dump( $et1 > 12 and $et2 < 21 );
+    print_r( $et1 > 12 and $et2 < 21 );
     echo "<mark> Le résultat sera true vu que les opérations sont toutes les 2 vrais.</mark>";
 ?>
 <h4>Exemple 2 - avec &&</h4>
@@ -885,7 +895,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $et3 = 18;
     $et4 = 20;
     
-    var_dump( $et3 > 12 && $et4 < 21 );
+    print_r( $et3 > 12 && $et4 < 21 );
     echo "&lt;mark&gt; Le résultat sera true vu que les opérations sont toutes les 2 vrais.&lt;/mark&gt;";
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -893,7 +903,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $et3 = 18;
     $et4 = 20;
     
-    var_dump( $et3 > 12 && $et4 < 21 );
+    print_r( $et3 > 12 && $et4 < 21 );
     echo "<mark> Le résultat sera true vu que les opérations sont toutes les 2 vrais.</mark>";
 ?>
 
@@ -904,7 +914,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $et1 = 5;
     $et2 = 30;
     
-    var_dump( $et1 > 12 and $et2 < 50 );
+    print_r( $et1 > 12 and $et2 < 50 );
     echo "&lt;mark&gt; Le résultat sera false vu que la premier opération est fausse.&lt;/mark&gt;";
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -912,7 +922,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $et1 = 5;
     $et2 = 30;
     
-    var_dump( $et1 > 12 and $et2 < 50 );
+    print_r( $et1 > 12 and $et2 < 50 );
     echo "<mark> Le résultat sera false vu que la premier opération est fausse.</mark>";
 ?>
 
@@ -922,7 +932,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $et1 = 5;
     $et2 = 30;
     
-    var_dump( $et1 > 12 && $et2 < 50 );
+    print_r( $et1 > 12 && $et2 < 50 );
     echo "&lt;mark&gt; Le résultat sera false vu que la premier opération est fausse.&lt;/mark&gt;";
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -930,7 +940,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $et1 = 5;
     $et2 = 30;
     
-    var_dump( $et1 > 12 && $et2 < 50 );
+    print_r( $et1 > 12 && $et2 < 50 );
     echo "<mark> Le résultat sera false vu que la premier opération est fausse.</mark>";
 ?>
 <h3>opérateur "OU"</h3>
@@ -941,7 +951,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $ou1 = 69;
     $ou2 = 33;
     
-    var_dump( $ou1 > 12 or $ou2 < 69 );
+    print_r( $ou1 > 12 or $ou2 < 69 );
     echo "&lt;mark&gt; Le résultat sera true vu que les opérations sont toutes les 2 vrais.&lt;/mark&gt;";
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -949,7 +959,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $ou1 = 69;
     $ou2 = 33;
     
-    var_dump( $ou1 > 12 or $ou2 < 69 );
+    print_r( $ou1 > 12 or $ou2 < 69 );
     echo "<mark> Le résultat sera true vu que les opérations sont toutes les 2 vrais.</mark>";
 ?>
 <h4>Exemple 2 - avec &&</h4>
@@ -958,7 +968,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $ou3 = 99;
     $ou4 = 39;
     
-    var_dump( $ou3 > 50 || $ou2 < 100 );
+    print_r( $ou3 > 50 || $ou2 < 100 );
     echo "&lt;mark&gt; Le résultat sera true vu que les opérations sont toutes les 2 vrais.&lt;/mark&gt;";
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -966,7 +976,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $ou3 = 99;
     $ou4 = 39;
     
-    var_dump( $ou3 > 50 || $ou2 < 100 );
+    print_r( $ou3 > 50 || $ou2 < 100 );
     echo "<mark> Le résultat sera true vu que les opérations sont toutes les 2 vrais.</mark>";
 ?>
 
@@ -977,7 +987,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $ou5 = 10;
     $ou6 = 80;
     
-    var_dump( $ou5 > 5 or $ou6 < 50 );
+    print_r( $ou5 > 5 or $ou6 < 50 );
     echo "&lt;mark&gt; Le résultat sera false vu que la seconde opération est fausse.&lt;/mark&gt;";
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -985,7 +995,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $ou5 = 10;
     $ou6 = 80;
     
-    var_dump( $ou5 > 5 or $ou6 < 50 );
+    print_r( $ou5 > 5 or $ou6 < 50 );
     echo "<mark> Le résultat sera false vu que la seconde opération est fausse.</mark>";
 ?>
 
@@ -995,7 +1005,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $ou7 = 10;
     $ou8 = 80;
     
-    var_dump( $ou7 > 11 || $ou8 < 90 );
+    print_r( $ou7 > 11 || $ou8 < 90 );
     echo "&lt;mark&gt; Le résultat sera true vu qu'au moins la seconde opération est juste.&lt;/mark&gt;";
 <span class="balisePHP">?&gt;</span>
 </pre>
@@ -1003,34 +1013,34 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $ou7 = 10;
     $ou8 = 80;
     
-    var_dump( $ou7 > 11 || $ou8 < 90 );
+    print_r( $ou7 > 11 || $ou8 < 90 );
     echo "<mark> Le résultat sera true vu qu'au moins la seconde opération est juste.</mark>";
 ?>
 <h3>L'inverse d'un resultat</h3>
 <p>on utilise ! pour définir l'inverse d'un résultat.</p>
 <h4>exemple normal</h4>
-<p>j'affiche ici une variable avec un boulean à true. On obtiendra via le var_dump true comme réponse.</p>
+<p>j'affiche ici une variable avec un boulean à true. On obtiendra via le print_r true comme réponse.</p>
 <pre>
 <span class="balisePHP">&lt;?php</span>
     $normal = true;
-    var_dump($normal);
+    print_r($normal);
 <span class="balisePHP">?&gt;</span>
 <?php
     $normal = true;
-    var_dump($normal);
+    print_r($normal);
 ?>
 </pre>
 <h4>exemple inversé</h4>
-<p>j'affiche ici une variable avec un boulean à true. Mais j'ajoute dans mon var_dump avant la variable le ! pour afficher l'inverse du résultat soit false.</p>
+<p>j'affiche ici une variable avec un boulean à true. Mais j'ajoute dans mon print_r avant la variable le ! pour afficher l'inverse du résultat soit false.</p>
 <pre>
 <span class="balisePHP">&lt;?php</span>
     $normal = true;
-    var_dump(!$normal);
+    print_r(!$normal);
 <span class="balisePHP">?&gt;</span>
 </pre>
 <?php
     $normal = true;
-    var_dump(!$normal);
+    print_r(!$normal);
 ?>
 <h3>L'opérateur xor</h3>
 <p>L'opérateur xor est très particulier, on doit obligatoirement obtenir une seule condition de vrai pour afficher true. Si 2 confitions sont vrai ou fausses, on obtiendra false. /!\ n'existe pas dans le javascript !!</p>
@@ -1040,7 +1050,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         $xor1 = 10;
         $xor2 = 20;
 
-        var_dump($xor1 > 5 xor $xor2 < 50);
+        print_r($xor1 > 5 xor $xor2 < 50);
         echo '$xor1 est bien supérieur à 5 et $xor2 est bien inférieur à 50 donc les 2 réponses sont vrai... On affiche avec xor false...';
     <span class="balisePHP">?&gt;</span>
 </pre>
@@ -1048,7 +1058,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $xor1 = 10;
     $xor2 = 20;
 
-    var_dump($xor1 > 5 xor $xor2 < 50);
+    print_r($xor1 > 5 xor $xor2 < 50);
     echo '$xor1 est bien supérieur à 5 et $xor2 est bien inférieur à 50 donc les 2 réponses sont vrai... On affiche avec xor false...';
 ?>
 <h4>Exemple 2 - 2 réponses fausses et on obtient false avec xor</h4>
@@ -1057,7 +1067,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         $xor3 = 1;
         $xor4 = 10;
 
-        var_dump($xor3 > 2 xor $xor4 < 9);
+        print_r($xor3 > 2 xor $xor4 < 9);
         echo '$xor3 n\'est pas supérieur à 2 et $xor4 n'est également pas inférieur à 9 donc les 2 réponses sont fausses... On affiche donc avec xor false...';
     <span class="balisePHP">?&gt;</span>
 </pre>
@@ -1065,7 +1075,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $xor3 = 1;
     $xor4 = 10;
 
-    var_dump($xor3 > 2 xor $xor4 < 9);
+    print_r($xor3 > 2 xor $xor4 < 9);
     echo '$xor3 n\'est pas supérieur à 2 et $xor4 n\'est également pas inférieur à 9 donc les 2 réponses sont fausses... On affiche donc avec xor false...';
 ?>
 <h4>Exemple 3 - 1 réponse est vrai et donc on obtient ici true avec xor</h4>
@@ -1074,7 +1084,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         $xor5 = 50;
         $xor6 = 60;
 
-        var_dump($xor5 > 100 xor $xor6 < 70);
+        print_r($xor5 > 100 xor $xor6 < 70);
         echo '$xor5 n\'est pas supérieur à 100 et $xor6 est par contre bien inférieur à 70 donc une des deux réponses est vrai. On affiche donc avec xor true...';
     <span class="balisePHP">?&gt;</span>
 </pre>
@@ -1082,7 +1092,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
     $xor5 = 50;
     $xor6 = 60;
 
-    var_dump($xor5 > 100 xor $xor6 < 70);
+    print_r($xor5 > 100 xor $xor6 < 70);
     echo '$xor5 n\'est pas supérieur à 100 et $xor6 est par contre bien inférieur à 70 donc une des deux réponses est vrai. On affiche donc avec xor true...';
 ?>
 <h3>Concaténé 2 string entre elles.</h3>
@@ -1553,13 +1563,13 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 <h3>methode 1 - directement en php.</h3>
 <?php      
     $semaine = array("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
-    var_dump($semaine);
+    print_r($semaine);
 ?>
 <h3>methode 2 - en php mais dans une balise pre</h3>
 <pre>
     <?php      
         $semaine = array("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
-        var_dump($semaine);
+        print_r($semaine);
     ?>
 </pre>
 <p>La lisibilité est nettement plus simple dans une balise pre. (La couleur est uniquement du à mon fichier stylePHP.css).</p>
@@ -1630,7 +1640,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
                 "sexe" => "féminin"
         );
 
-        var_dump($identiter);
+        print_r($identiter);
     ?&gt;
 </pre>
 <?php
@@ -1641,7 +1651,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         "sexe" => "féminin"
     );
 
-    var_dump($identiter);
+    print_r($identiter);
 ?>
 <h3>Récupérer une valeur d'un tableau associatif</h3>
 <p>Si on désire obtenir le résultat d'un élément précis dans un tableau associatif, on sélectionnera la variable du tableau suivi de [] avec pour contenu soit dans notre variable $identiter : "nom" qui correpond à 0 et "sexe" qui correspondrai à l'indice 3</p>
@@ -1671,7 +1681,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
             "Position6" => "France"
         );
 
-        var_dump( $prenoms ); 
+        print_r( $prenoms ); 
     ?&gt;
 </pre>
 <?php
@@ -1684,7 +1694,7 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         "Position6" => "France"
     );
     
-    var_dump( $prenoms ); 
+    print_r( $prenoms ); 
 ?>
 <p>La syntaxe de la boucle foreach est la suivante :</p>
 <pre>
@@ -1707,55 +1717,331 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
         echo "En $key on trouve le prénom suivant : $value <br />";
     }
 ?>
+<h2>Les objets</h2>
+<p>Les objet c'est comme la vie courante, tout tourne autour d'objet. Exemple un crayon est un objet il peut être à papier de couleur si il est de couleur il peut être rouge bleu jaune vert etc... en programmation orienté objet (POO) c'est exactement la même chose.</p>
+<h3>Déclaration d'un objet</h3>
+<p>exemple concret avec la déclaration de l'objet Etudiant</p>
+<pre>
+    &lt;?php
+        class Etudiant {
 
+            public $etudie = true;
+            public $nom;
+            public $age;
+            public $notes;
 
+            // Fonction constructeur
+            public function __construct ($nomdelapersonne, $agedelapersonne, $notesdelapersonne) {
+                $this -> nom = $nomdelapersonne;
+                $this -> age = $agedelapersonne;
+                $this -> notes = $notesdelapersonne;
+            } /Fin du constructeur
+        }
+    ?&gt;
+</pre>
+<?php
+    class Etudiant {
 
+        public $etudie = true;
+        public $nom;
+        public $age;
+        public $notes;
 
+        // Fonction constructeur
+        public function __construct ($nomdelapersonne, $agedelapersonne, $notesdelapersonne) {
+            $this -> nom = $nomdelapersonne;
+            $this -> age = $agedelapersonne;
+            $this -> notes = $notesdelapersonne;
+        } // Fin du constructeur
+    }
+?>
+<h3>Création d'une INSTANCE de notre objet Etudiant</h3>
+<p>Une instance est tout simplement un nouvel objet basé sur le constructeur. Ainsi ci-dessous je créer ma propre instance de ma personne.</p>
+<pre>
+    &lt;?php
+        $notesAlain = array(
+            "Maths" => 15,
+            "Français" => 9,
+            "Anglais" => 12
+        );
+        $alain = new Etudiant ( "Guillon", 32, $notesAlain);
+        print_r($alain);
+    ?&gt;
+</pre>
+<?php
+    $notesAlain = array(
+            "Maths" => 15,
+            "Français" => 9,
+            "Anglais" => 12
+        );
+    $alain = new Etudiant ( "Guillon", 32, $notesAlain);
+    print_r($alain);
+?>
+<p>Pour afficher visuellement parlant le même objet mais plus proprement on utilise la balise pre avec un print_r</p>
+<pre>
+    <?php
+        $notesAlain = array(
+                "Maths" => 15,
+                "Français" => 9,
+                "Anglais" => 12
+            );
+        $alain = new Etudiant ( "Guillon", 32, $notesAlain);
+        print_r($alain);
+    ?>
+</pre>
+<h3>Définition d'un autre objet basé sur le premier objet Etudiant. Puis on y ajoute une méthode sePresenter()</h3>
+<pre>
+    &lt;?php
+        class EtudiantTwo {
 
+            public $etudie = true;
+            public $nom;
+            public $age;
+            public $notes;
 
+            // constructeur
+            public function __construct ($nomdelapersonne, $agedelapersonne, $notesdelapersonne) {
+                $this -> nom = $nomdelapersonne;
+                $this -> age = $agedelapersonne;
+                $this -> notes = $notesdelapersonne;
+            } // Fin du constructeur
 
+            // Méthode
+            public function sePresenterTwo () {
+                if ( $this->etudie) {
+                    echo "Je m'appel $this->nom et j'ai $this->age ans. &lt;br /&gt;" ;
 
+                    foreach ( $this->notes as $matiere => $note ) {
+                    echo "Dans le langage <strong>$matiere</strong>, je pense avoir : <strong>$note</strong> <br />";
+                    }
+                }
+            } // Fin de la méthode sePresenter()
+        }
+    ?&gt;
+</pre>
+<?php
+    class EtudiantTwo {
 
+        public $etudie = true;
+        public $nom;
+        public $age;
+        public $notes;
 
+        // Fonction constructeur
+        public function __construct ($nomdelapersonne, $agedelapersonne, $notesdelapersonne) {
+            $this -> nom = $nomdelapersonne;
+            $this -> age = $agedelapersonne;
+            $this -> notes = $notesdelapersonne;
+        } // Fin du constructeur
 
+        // Méthode 
+        public function sePresenterTwo () {
+            if ( $this->etudie) {
+                echo "Je m'appel $this->nom et j'ai $this->age ans. <br />" ;
+                echo "<hr /><br />";
 
+                foreach ( $this->notes as $matiere => $note ) {
+                    echo "Dans le langage <strong>$matiere</strong>, je pense avoir : <strong>$note</strong> <br />";
+                }
+            }
+        } // Fin de la méthode sePresenter()
+    }
+?>
+<p>Maintenant qu'on a définit la méthode. on créer ci-dessous un tableau de note qui sera attribué un une instance de notre EtudiantTwo. Pour finir, on lui ajoutera notre fonction se présenter.</p>
+<pre>
+    &lt;?php
 
+        // Conception d'un tableau de note spécifique à l'utilisateur Alain.
+        $tableauAlainNote = array (
+            "Html 5" => "Une très Bonne connaissance",
+            "CSS 3" => "Une très bonne connaissance",
+            "Bootstrap 3" => "Une très Bonne connaissance",
+            "Bootstrap 4" => "Une assez bonne connaissance",
+            "JavaScript" => "Une bonne connaissance",
+            "JQuery" => "Une assez bonne conaissance",
+            "PHP" => "Une bonne conaissance",
+            "MySQL" => "Vu à la 3WA non pratiqué depuis juillet 2016",
+            "POO" => "Actuellent en cours d'apprentissage",
+            "Laravel" => "Vu en cours à la 3WA non pratiqué depuis juillet 2016",
+            "Emmet" => "Une bonne connaissance côté HTML uniquement",
+            "Sass" => "Je pratique uniquement la base pour le moment",
+            "Git" => "Une connaissance uniquement sur : git status / git add -A / git add . / git commit -am 'blabla' / git push origin master / git clone url / git pull origin master",
+            "Angular 2" => "Je prévois de l'apprendre début 2017"
+        );
 
+        // Création d'une instance de EtudiantTwo
+        $alainGuillon = new EtudiantTwo ("Guillon", 32, $tableauAlainNote);
 
+        // J'exécute ma méthode directement ci-dessous.
+        $alainGuillon->sePresenterTwo();
+    ?&gt;
+</pre>
+<?php
 
+    // Conception d'un tableau de note spécifique à l'utilisateur Alain.
+    $tableauAlainNote = array (
+        "Html 5" => "Une très Bonne connaissance",
+        "CSS 3" => "Une très bonne connaissance",
+        "Bootstrap 3" => "Une très Bonne connaissance",
+        "Bootstrap 4" => "Une assez bonne connaissance",
+        "JavaScript" => "Une bonne connaissance",
+        "JQuery" => "Une assez bonne conaissance",
+        "PHP" => "Une bonne conaissance",
+        "MySQL" => "Vu à la 3WA non pratiqué depuis juillet 2016",
+        "POO" => "Actuellent en cours d'apprentissage",
+        "Laravel" => "Vu en cours à la 3WA non pratiqué depuis juillet 2016",
+        "Emmet" => "Une bonne connaissance côté HTML uniquement",
+        "Sass" => "Je pratique uniquement la base pour le moment",
+        "Git" => "Une connaissance uniquement sur : git status / git add -A / git add . / git commit -am 'blabla' / git push origin master / git clone url / git pull origin master",
+        "Angular 2" => "Je prévois de l'apprendre début 2017"
+    );
 
+    // Création d'une instance de EtudiantTwo
+    $alainGuillon = new EtudiantTwo ("Guillon Alain", 32, $tableauAlainNote);
 
+    // J'exécute ma méthode directement ci-dessous.
+    $alainGuillon->sePresenterTwo();
+?>
 
+<h2>Include & Require</h2>
+<h3>include</h3>
+<p>La fonction include() permet de spécifier un bout de code qui sera lui inscrit dans une autre page web.</p>
+<h4>exemple 1 - include promotions.php</h4>
+<pre>
+    &lt;?php
+        include( "promotions.php" );
+    ?&gt;
+</pre>
+<?php
+    include( "promotions.php" );
+?>
+<p>Le code de la page promotion</p>
+<pre>
+    &lt;p&gt;&lt;mark&gt;Ce paragraphe qui est surligner fait partie du code de la page promotions.php&lt;/mark&gt;&lt;/p&gt;
+</pre>
+<p>Une variante existe avec include_once() qui permet cette fois-ci de s'assurer que le bout de code qui sera ajouter n'existe pas déjà.</p>
 
+<h3>require</h3>
+<p>require fait exactement la même chose à une nuance prêt. Quand on cherche à ajouter un code d'une autre page qui n'existe pas, avec include, le code sera tout de même exécuter. En revanche si on utilise un require pour la même chose, le code qui succède au require ne sera JAMAIS interprêté.</p>
+<h2>Les super globales</h2>
+<h3>La super global GLOBALS</h3>
+<p>cette super global permet de lire une variable global dans une function qui de base ne serait possible.</p>
+<h4>exemple super global - GLOBALS[]</h4>
+<pre>
+    &lt;?php 
+        $xx = 10;
+        $yy = 20;
 
+        function superGlobalGlobal () {
+            echo $GLOBALS["xx"];
+        }
 
+        superGlobalGlobal();
+    ?&gt;
+</pre>
+<?php 
+    $xx = 10;
+    $yy = 20;
 
+    function superGlobalGlobal () {
+        echo $GLOBALS["xx"];
+    }
 
+    superGlobalGlobal();
+?>
+<h3>LA super global $_SERVER</h3>
+<p>la super global $_SERVER permet d'afficher directement toutes les informations du serveur.</p>
+<pre>
+    &lt;?php
+        print_r($_SERVER);
+    ?&gt;
+</pre>
+<?php
+    print_r($_SERVER);
+?>
+<p>LEs autres super global qui existe</p>
+<ul>
+    <li>$_REQUEST</li>
+    <li>$_POST</li>
+    <li>$_GET</li>
+    <li>$_COOKIE</li>
+    <li>$_SESSION</li>
+</ul>
+<h2>la super global $_GET</h2>
+<p>la super global $_GET() est uniquement utiliser pour tout ce qui est moteur de recherche. En effet les informations qui transite avec cette super global sont accessible directement dans la barre d'adresse. Ainsi il peut être délicat. </p>
+<h3>Exemple $_GET</h3>
+<p>
+    <a href="presentation.php?nom=Alain&age=32">Présentation</a>
+</p>
+<h3>Autre exemple d'un $_GET</h3>
+<p>
+    <a href="aboutus.php?lang1=html5&lang2=css3&lang3=jquery&lang4=php&lang5=mysql">aboutus</a>
+</p>
+<h2>LA super global $_POST</h2>
+<p>A contrario de la super global $_GET qui transite via la barre d'adresse, la super global $_POST elle n'est pas visible à l'oeil nu. Obligatoirement à utiliser dans un formulaire.</p>
+<h3>Conception d'un formulaire.</h3>
+<form action="traitementFormulaire.php" method="POST">
+    <label for="nom">Nom :</label>
+    <input type="text" name="nom" id="nom" placeholder="saisir votre nom ici">
 
+    <label for="mail">Email :</label>
+    <input type="email" name="mail" id="mail" placeholder="saisir votre mail ici">
 
+    <label for="prenom">Prénom :</label>
+    <input type="text" name="prenom" id="prenom" placeholder="saisir votre prénom">
 
+    <button type="submit">Soumettre le formulaire</button>
+</form>
+<h2>LA super global $_SESSION</h2>
+<p>Cette super globale permet de retenir des informations lors d'une visite de votre site.</p>
+<p>Tout ce situe avant le doctype en initialisant avec cette ligne :</p>
+<pre>
+    &lt;?php
+        session_start();
 
+        // stocker une information d'un utilisateur
+        $_SESSION["nom"] = "Alain";
+    ?&gt;
+</pre>
+<p>A savoir, sur chaque page, il faut réinscrir le session_start() c'est obligatoire. Inutile par contre de noter le reste. dans les autres pages, on aura saisis comme $_POST[] la même chose qu'à la différence de POST c'est SESSION soit : $_SESSION[]</p>
+<h3>exemple $_SESSION</h3>
+<p>le lien qui suit nous renvoi vers la page testSession.php qui permet de voir si la super global qui a été saisi tout en haut avant le doctype. Correspond bien avec la baleur stocker soit "Alain"</p>
 
+<a href="testSession.php">Lien vers la page de teste de la session.</a>
+<h2>La super global $_COOKIE</h2>
+<p>La super global cookie va nous permettre de garder en mémoire des informations spécifique sur le contenu de son site web. Ainsi nous ne seront pas obligé de retaper indéfiniment les données qui aurait déjà été saisi auparavant.</p>
+<p>Un cookie se créer au tout début avant le doctype.</p>
+<h3>la syntaxe</h3>
+<pre>
+    &lt;?php
+        // Conception d'un cookie
+        setcookie(arg1, arg2, time() + 3600*24*30);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /* arg1 = le nom du cookie (string)
+         * arg2 = la valeur qu'on stock (exemple : "nom")
+         *time() + 3600*24*30 = fonction time() qui définira le temps de validité d'un cookie. 3600 = 1h * 24h * 30 qui donne un cookie valide 30 jours.
+         */
+    ?&gt;
+</pre>
+<h3>Verrifier si un cookie existe</h3>
+<p>On peut vérifier si un cookie existe ou non avec isset()</p>
+<h4>exemple d'un isset()</h4>
+<pre>
+    &lt;?php
+        if ( isset ( $_COOKIE["myCookie"] ) ) {
+            echo "&lt;h1&gt;". $_COOKIE["myCookie"] ."&lt;/h1&gt;";
+        } else {
+            echo "&lt;h1&gt;Nom inconnu&lt;/h1&gt;";
+        }
+    ?&gt;
+</pre>
+<?php
+    if ( isset ( $_COOKIE["myCookie"] ) ) {
+        echo "<h1>". $_COOKIE["myCookie"] ."</h1>";
+    } else {
+        echo "<h1>Nom inconnu</h1>";
+    }
+?>
 
 </body>
 </html>
