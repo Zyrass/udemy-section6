@@ -411,6 +411,43 @@ arg3 = Ou ? Dans quelle chaine de caractère ?
 
     echo str_replace($functionString2a, $functionString2b, $functionString2c);
 ?>
+<h3>Mélanger une phrase</h3>
+<p>Syntaxe : <strong>str_shuffle();</strong></p>
+<pre>
+    <span class="balisePHP">&lt;?php</span>
+        echo str_shuffle( $phrase);
+        // Cette fonction est aléatoire ainsi on aura jamais ou dans de très rare cas la même écriture.
+        echo '&lt;br /&gt;&lt;br /&gt;';
+        echo 'Autre génération de la même phrase';
+        echo str_shuffle( $phrase);
+        echo '&lt;br /&gt;&lt;br /&gt;';
+        echo str_shuffle( $phrase);
+        echo '&lt;br /&gt;&lt;br /&gt;';
+        echo str_shuffle( $phrase);
+        echo '&lt;br /&gt;&lt;br /&gt;';
+        echo '&lt;mark&gt;Traduction de la phrase&lt;/mark&gt;:';
+        echo '&lt;br /&gt;&lt;br /&gt;';
+        // la phrase d'origine'
+        echo $phrase;
+    <span class="balisePHP">?&gt;</span>
+</pre>
+<?php
+    $phrase = "Je suis une phrase très très longue et oui je suis tellement grande que vous ne trouverez jamais ce que cette phrase veut dire";
+        echo str_shuffle( $phrase);
+        // Cette fonction est aléatoire ainsi on aura jamais ou dans de très rare cas la même écriture.
+        echo '<br /><br />';
+        echo 'Autre génération de la même phrase';
+        echo str_shuffle( $phrase);
+        echo '<br /><br />';
+        echo str_shuffle( $phrase);
+        echo '<br /><br />';
+        echo str_shuffle( $phrase);
+        echo '<br /><br />';
+        echo '<mark>Traduction de la phrase</mark>';
+        echo '<br /><br />';
+        // la phrase d'origine'
+        echo $phrase;
+?>
 <h2>Les constantes</h2>
 <p>Une constante, c'est la définition d'un terme bien précis qui ne changera jamais. A savoir aussi qu'une constante est accessible de partout que ce soit dans un scope global, locale peu importe.</p>
 <pre>
